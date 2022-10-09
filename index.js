@@ -1,16 +1,21 @@
+const NUMBERS_IN_ONE_LINE = 25;
+
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
 
 let randomNumbersString = "";
-const NUMBERS_IN_ONE_LINE = 5;
+
+const generateRandomNumber = () => {
+  return Math.abs((Math.random() * 10 - 1).toFixed(0));
+};
 
 const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
   const randomNumbers = [];
   let prevNumber = 0;
-  let newNumber = 1;
+  let newNumber = 0;
   for (let i = 0; i < numberOfRandomNumbersToGenerate; i++) {
     while (prevNumber === newNumber) {
-      newNumber = Math.abs((Math.random() * 10 - 1).toFixed(0));
+      newNumber = generateRandomNumber();
     }
     prevNumber = newNumber;
     randomNumbers.push(newNumber);
