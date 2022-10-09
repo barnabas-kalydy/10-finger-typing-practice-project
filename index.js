@@ -49,9 +49,7 @@ inputEl.addEventListener("keyup", () => {
     inputEl.value = "";
     return;
   }
-  if (validUntilNow(randomNumbersString, inputEl.value)) {
-    inputEl.classList.remove("invalid");
-  } else {
-    inputEl.classList.add("invalid");
-  }
+  validUntilNow(randomNumbersString, inputEl.value)
+    ? inputEl.classList.remove("invalid")
+    : inputEl.classList.add("invalid");
 });
