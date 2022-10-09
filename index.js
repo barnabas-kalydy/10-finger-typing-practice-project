@@ -3,8 +3,14 @@ const numbersToTypeEl = document.getElementById("numbers-to-type");
 
 const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
   const randomNumbers = [];
+  let prevNumber = 0;
+  let newNumber = 1;
   for (let i = 0; i < numberOfRandomNumbersToGenerate; i++) {
-    randomNumbers.push(Math.abs((Math.random() * 10 - 1).toFixed(0)));
+    while (prevNumber === newNumber) {
+      newNumber = Math.abs((Math.random() * 10 - 1).toFixed(0));
+    }
+    prevNumber = newNumber;
+    randomNumbers.push(newNumber);
   }
   return randomNumbers;
 };
