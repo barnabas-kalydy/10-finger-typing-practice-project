@@ -9,3 +9,11 @@ body * {
 .invalid {
     background-color: red;
 }
+
+input {
+    border: none;
+}
+
+.center {
+    text-align: center;
+}

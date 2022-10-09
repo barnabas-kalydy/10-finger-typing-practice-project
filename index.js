@@ -12,7 +12,7 @@ const generateRandomNumber = () => {
 const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
   const randomNumbers = [];
   let prevNumber = 0;
-  let newNumber = 0;
+  let newNumber = prevNumber;
   for (let i = 0; i < numberOfRandomNumbersToGenerate; i++) {
     while (prevNumber === newNumber) {
       newNumber = generateRandomNumber();
