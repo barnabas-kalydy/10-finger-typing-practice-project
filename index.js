@@ -27,9 +27,26 @@ const lineIsFinished = () => {
   return randomNumbersString === inputEl.value ? true : false;
 };
 
+const validUntilNow = (randomNumbersString, actuallyTypedNumbers) => {
+  let valid = true;
+  for (let i = 0; i < actuallyTypedNumbers.length; i++) {
+    if (randomNumbersString.charAt(i) !== actuallyTypedNumbers.charAt(i)) {
+      valid = false;
+      break;
+    }
+  }
+  return valid;
+};
+
 inputEl.addEventListener("keyup", () => {
   if (inputEl.value !== "" && lineIsFinished()) {
     refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
     inputEl.value = "";
+    return;
+  }
+  if (validUntilNow(randomNumbersString, inputEl.value)) {
+    inputEl.classList.remove("invalid");
+  } else {
+    inputEl.classList.add("invalid");
   }
 });
