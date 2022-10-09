@@ -1,6 +1,9 @@
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
 
+let randomNumbersString = "";
+const NUMBERS_IN_ONE_LINE = 5;
+
 const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
   const randomNumbers = [];
   let prevNumber = 0;
@@ -12,10 +15,21 @@ const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
     prevNumber = newNumber;
     randomNumbers.push(newNumber);
   }
-  return randomNumbers;
+  randomNumbersString = randomNumbers.join("").toString();
 };
 
 const refreshNumbersInNumbersToType = (numbers) => {
-  numbersToTypeEl.textContent = numbers.join("").toString();
+  numbersToTypeEl.textContent = randomNumbersString;
 };
-refreshNumbersInNumbersToType(generateRandomNumbers(25));
+refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
+
+const lineIsFinished = () => {
+  return randomNumbersString === inputEl.value ? true : false;
+};
+
+inputEl.addEventListener("keyup", () => {
+  if (inputEl.value !== "" && lineIsFinished()) {
+    refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
+    inputEl.value = "";
+  }
+});
