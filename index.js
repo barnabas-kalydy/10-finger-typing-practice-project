@@ -1,4 +1,4 @@
-const NUMBERS_IN_ONE_LINE = 25;
+const NUMBERS_IN_ONE_LINE = 1;
 
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
