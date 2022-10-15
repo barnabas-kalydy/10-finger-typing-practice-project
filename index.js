@@ -1,4 +1,4 @@
-const NUMBERS_IN_ONE_LINE = 25;
+const NUMBERS_IN_ONE_LINE = 1;
 
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
@@ -6,7 +6,7 @@ const numbersToTypeEl = document.getElementById("numbers-to-type");
 let randomNumbersString = "";
 
 const generateRandomNumber = () => {
-  return Math.abs((Math.random() * 10 - 1).toFixed(0));
+  return Math.floor(Math.random() * 10);
 };
 
 const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
