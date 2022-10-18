@@ -1,1 +1,1 @@
-export const NUMBERS_IN_ONE_LINE = 1;
+export const NUMBERS_IN_ONE_LINE = 5;

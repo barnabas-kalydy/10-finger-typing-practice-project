@@ -6,6 +6,8 @@ const numbersToTypeEl = document.getElementById("numbers-to-type");
 const accuracyFieldEl = document.getElementById("accuracy-field");
 const numbersTypedEl = document.getElementById("numbers-typed");
 const missedNumbersEl = document.getElementById("missed-numbers");
+const timerFieldEl = document.getElementById("timer-field");
+const charPerMinField = document.getElementById("char-per-min-field");
 
 let missedNumbers = 0;
 let numbersTyped = 0;
@@ -35,13 +37,16 @@ const updateAccuracyFields = () => {
     (((numbersTyped - missedNumbers) / numbersTyped) * 100).toFixed(2) + " %";
 };
 
-inputEl.addEventListener("keyup", () => {
+inputEl.addEventListener("keyup", (e) => {
+  if (e.key === "Backspace") {
+    return;
+  }
+
   if (validUntilNow(randomNumbersString, inputEl.value)) {
     inputEl.classList.remove("invalid");
   } else {
     inputEl.classList.add("invalid");
     missedNumbers++;
-    numbersTyped++;
   }
 
   const isInputNotEmpty = inputEl.value !== "";
@@ -49,8 +54,17 @@ inputEl.addEventListener("keyup", () => {
   if (isInputNotEmpty && isLineFinished) {
     refreshNumbersInNumbersToType();
     inputEl.value = "";
-    numbersTyped++;
   }
 
+  numbersTyped++;
   updateAccuracyFields();
 });
+
+let time = 0;
+const updateTimer = () => {
+  time++;
+  timerFieldEl.textContent = time;
+  charPerMinField.textContent = (numbersTyped / (time / 60)).toFixed(2);
+};
+
+const myInterval = setInterval(updateTimer, 1000);
