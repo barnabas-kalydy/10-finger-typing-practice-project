@@ -7,12 +7,19 @@
     <title>Type practice program</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="center">
-    <div class="vertical-center">
-      <h1>This is the 10-finger typing school</h1>
-      <p id="numbers-to-type" class="font-46"></p>
+  <body>
+    <div class="center">
+      <h1 id="title-field" class="white-color">This is the 10-finger typing school</h1>
+      <div class="numbers-field">
+        <p id="numbers-to-type" class="font-46"></p>
+      </div>
       <input type="text" id="input-field" name="input-field" class="valid" />
-      <script src="index.js"></script>
+      <div id="info-panel">
+        <p>Numbers typed: <span id="numbers-typed"></span></p>
+        <p>Missed numbers: <span id="missed-numbers"></span></p>
+        <p>Accuracy: <p id="accuracy-field"></p></p>
+      </div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>

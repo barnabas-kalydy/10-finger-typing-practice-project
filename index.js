@@ -1,7 +1,12 @@
 const NUMBERS_IN_ONE_LINE = 1;
+let numbersTyped = 0;
+let missedNumbers = 0;
 
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
+const accuracyFieldEl = document.getElementById("accuracy-field");
+const numbersTypedEl = document.getElementById("numbers-typed");
+const missedNumbersEl = document.getElementById("missed-numbers");
 
 let randomNumbersString = "";
 
@@ -43,14 +48,24 @@ const validUntilNow = (randomNumbersString, actuallyTypedNumbers) => {
   return valid;
 };
 
+const updateAccuracyFields = () => {
+  numbersTypedEl.innerText = numbersTyped;
+  missedNumbersEl.innerText = missedNumbers;
+};
+
 inputEl.addEventListener("keyup", () => {
+  if (validUntilNow(randomNumbersString, inputEl.value)) {
+    inputEl.classList.remove("invalid");
+  } else {
+    inputEl.classList.add("invalid");
+    missedNumbers++;
+  }
+
   if (inputEl.value !== "" && lineIsFinished()) {
     refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
     inputEl.value = "";
-    return;
+    numbersTyped++;
   }
 
-  validUntilNow(randomNumbersString, inputEl.value)
-    ? inputEl.classList.remove("invalid")
-    : inputEl.classList.add("invalid");
+  updateAccuracyFields();
 });

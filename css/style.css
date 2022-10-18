@@ -2,6 +2,26 @@ body * {
     font-size: 46px;
 }
 
+body {
+    background-image: url(/static/bg.jpg);
+    background-size: cover;
+}
+
+.white-color {
+    color: white;
+}
+
+#title-field {
+    background-color: rgba(0, 1, 0, 0.8);
+}
+
+.numbers-field {
+    background-color: red;
+    margin-left: 45%;
+    margin-right: 45%;
+    color: rgb(0, 0, 0);
+}
+
 .valid {
     background-color: aqua;
 }
@@ -16,4 +36,18 @@ input {
 
 .center {
     text-align: center;
+}
+
+#info-panel {
+    border: 2px black;
+    border-style: solid;
+    background-color: cadetblue;
+    display: block;
+    margin: 30px;
+    margin-right: 30%;
+    margin-left: 30%;
+}
+
+#info-panel * {
+    font-size: 24px;
 }
