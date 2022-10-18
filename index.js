@@ -1,4 +1,5 @@
 import { generateRandomNumbers } from "./src/random_generator.js";
+import { NUMBERS_IN_ONE_LINE } from "./config.js";
 
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
@@ -6,7 +7,6 @@ const accuracyFieldEl = document.getElementById("accuracy-field");
 const numbersTypedEl = document.getElementById("numbers-typed");
 const missedNumbersEl = document.getElementById("missed-numbers");
 
-const NUMBERS_IN_ONE_LINE = 1;
 let missedNumbers = 0;
 let numbersTyped = 0;
 let randomNumbersString = "";
@@ -44,9 +44,10 @@ inputEl.addEventListener("keyup", () => {
     numbersTyped++;
   }
 
+  const isInputNotEmpty = inputEl.value !== "";
   const isLineFinished = randomNumbersString === inputEl.value ? true : false;
-  if (inputEl.value !== "" && isLineFinished) {
-    refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
+  if (isInputNotEmpty && isLineFinished) {
+    refreshNumbersInNumbersToType();
     inputEl.value = "";
     numbersTyped++;
   }
