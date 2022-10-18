@@ -1,6 +1,4 @@
-const NUMBERS_IN_ONE_LINE = 1;
-let numbersTyped = 0;
-let missedNumbers = 0;
+import { generateRandomNumbers } from "./src/random_generator.js";
 
 const inputEl = document.getElementById("input-field");
 const numbersToTypeEl = document.getElementById("numbers-to-type");
@@ -8,34 +6,16 @@ const accuracyFieldEl = document.getElementById("accuracy-field");
 const numbersTypedEl = document.getElementById("numbers-typed");
 const missedNumbersEl = document.getElementById("missed-numbers");
 
+const NUMBERS_IN_ONE_LINE = 1;
+let missedNumbers = 0;
+let numbersTyped = 0;
 let randomNumbersString = "";
 
-const generateRandomNumber = () => {
-  return Math.floor(Math.random() * 10);
-};
-
-const generateRandomNumbers = (numberOfRandomNumbersToGenerate) => {
-  const randomNumbers = [];
-  let prevNumber = 0;
-  let newNumber = prevNumber;
-  for (let i = 0; i < numberOfRandomNumbersToGenerate; i++) {
-    while (prevNumber === newNumber) {
-      newNumber = generateRandomNumber();
-    }
-    prevNumber = newNumber;
-    randomNumbers.push(newNumber);
-  }
-  randomNumbersString = randomNumbers.join("").toString();
-};
-
-const refreshNumbersInNumbersToType = (numbers) => {
+const refreshNumbersInNumbersToType = () => {
+  randomNumbersString = generateRandomNumbers(NUMBERS_IN_ONE_LINE);
   numbersToTypeEl.textContent = randomNumbersString;
 };
-refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
-
-const lineIsFinished = () => {
-  return randomNumbersString === inputEl.value ? true : false;
-};
+refreshNumbersInNumbersToType();
 
 const validUntilNow = (randomNumbersString, actuallyTypedNumbers) => {
   let valid = true;
@@ -64,7 +44,8 @@ inputEl.addEventListener("keyup", () => {
     numbersTyped++;
   }
 
-  if (inputEl.value !== "" && lineIsFinished()) {
+  const isLineFinished = randomNumbersString === inputEl.value ? true : false;
+  if (inputEl.value !== "" && isLineFinished) {
     refreshNumbersInNumbersToType(generateRandomNumbers(NUMBERS_IN_ONE_LINE));
     inputEl.value = "";
     numbersTyped++;
