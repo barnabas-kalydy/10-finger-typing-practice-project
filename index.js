@@ -51,6 +51,8 @@ const validUntilNow = (randomNumbersString, actuallyTypedNumbers) => {
 const updateAccuracyFields = () => {
   numbersTypedEl.innerText = numbersTyped;
   missedNumbersEl.innerText = missedNumbers;
+  accuracyFieldEl.innerText =
+    (((numbersTyped - missedNumbers) / numbersTyped) * 100).toFixed(2) + " %";
 };
 
 inputEl.addEventListener("keyup", () => {
@@ -59,6 +61,7 @@ inputEl.addEventListener("keyup", () => {
   } else {
     inputEl.classList.add("invalid");
     missedNumbers++;
+    numbersTyped++;
   }
 
   if (inputEl.value !== "" && lineIsFinished()) {
