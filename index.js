@@ -8,6 +8,8 @@ const numbersTypedEl = document.getElementById("numbers-typed");
 const missedNumbersEl = document.getElementById("missed-numbers");
 const timerFieldEl = document.getElementById("timer-field");
 const charPerMinField = document.getElementById("char-per-min-field");
+const showInfoEl = document.getElementById("show-info");
+const additionalInfoEl = document.getElementById("additional-info");
 
 let missedNumbers = 0;
 let numbersTyped = 0;
@@ -60,9 +62,16 @@ inputEl.addEventListener("keyup", (e) => {
   updateAccuracyFields();
 });
 
+showInfoEl.addEventListener("change", (e) => {
+  e.target.checked
+    ? (additionalInfoEl.style.display = "inline")
+    : (additionalInfoEl.style.display = "none");
+});
+
 let time = 0;
 const updateTimer = () => {
   time++;
+  // todo refactor this to use Date and show in a form like: {minutes: seconds}
   timerFieldEl.textContent = time;
   charPerMinField.textContent = (numbersTyped / (time / 60)).toFixed(2);
 };

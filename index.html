@@ -10,18 +10,24 @@
   <body>
     <div class="center">
       <h1 id="title-field" class="white-color">
-        This is the 10-finger typing school
+        This is the 10-finger typing school with numbers
       </h1>
       <div class="numbers-field">
         <p id="numbers-to-type" class="font-46"></p>
       </div>
       <input type="text" id="input-field" name="input-field" class="valid" />
       <div id="info-panel">
-        <p>Numbers typed: <span id="numbers-typed"></span></p>
-        <p>Missed numbers: <span id="missed-numbers"></span></p>
+        <div>
+          <input type="checkbox" id="show-info" name="show-info" value="" />
+          <label for="show-info">Show information</label><br />
+        </div>
         <p>Accuracy: <span id="accuracy-field"></span></p>
-        <p>Timer(seconds): <span id="timer-field"></span></p>
         <p>Character/Minute: <span id="char-per-min-field"></span></p>
+        <span id="additional-info">
+          <p>Numbers typed: <span id="numbers-typed"></span></p>
+          <p>Missed numbers: <span id="missed-numbers"></span></p>
+          <p>Timer(seconds): <span id="timer-field"></span></p>
+        </span>
       </div>
     </div>
     <script type="module" src="index.js"></script>
