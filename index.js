@@ -14,6 +14,8 @@ const additionalInfoEl = document.getElementById("additional-info");
 let missedNumbers = 0;
 let numbersTyped = 0;
 let randomNumbersString = "";
+const SECONDS_PER_MINUTE = 60;
+const MILLISECONDS_PER_SECOND = 1000;
 
 const refreshNumbersInNumbersToType = () => {
   randomNumbersString = generateRandomNumbers(NUMBERS_IN_ONE_LINE);
@@ -68,12 +70,20 @@ showInfoEl.addEventListener("change", (e) => {
     : (additionalInfoEl.style.display = "none");
 });
 
-let time = 0;
+const startDate = new Date();
 const updateTimer = () => {
-  time++;
-  // todo refactor this to use Date and show in a form like: {minutes: seconds}
-  timerFieldEl.textContent = time;
-  charPerMinField.textContent = (numbersTyped / (time / 60)).toFixed(2);
+  const actualDate = new Date();
+  const timerSeconds = (
+    (actualDate.valueOf() - startDate.valueOf()) /
+    MILLISECONDS_PER_SECOND
+  ).toFixed(0);
+  const minutes = Math.floor(timerSeconds / SECONDS_PER_MINUTE);
+  const seconds = timerSeconds % SECONDS_PER_MINUTE;
+  timerFieldEl.textContent =
+    (minutes.toString().length > 1 ? minutes : "0" + minutes) +
+    " : " +
+    (seconds.toString().length > 1 ? seconds : "0" + seconds);
+  charPerMinField.textContent = (numbersTyped / timerSeconds).toFixed(2);
 };
 
-const myInterval = setInterval(updateTimer, 1000);
+const myInterval = setInterval(updateTimer, MILLISECONDS_PER_SECOND);
