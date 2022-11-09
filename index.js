@@ -83,6 +83,7 @@ const updateTimer = () => {
     (minutes.toString().length > 1 ? minutes : "0" + minutes) +
     " : " +
     (seconds.toString().length > 1 ? seconds : "0" + seconds);
+  // todo this is now calculating numbers / seconds -> this is a bug
   charPerMinField.textContent = (numbersTyped / timerSeconds).toFixed(2);
 };
 
