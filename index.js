@@ -88,10 +88,15 @@ const updateTimer = () => {
     (minutes.toString().length > 1 ? minutes : "0" + minutes) +
     " : " +
     (seconds.toString().length > 1 ? seconds : "0" + seconds);
+<<<<<<< HEAD
   charPerMinField.textContent = (
     calculateAccuratelyTypedNumbers() /
     (timerSeconds / 60)
   ).toFixed(2);
+=======
+  // todo this is now calculating numbers / seconds -> this is a bug
+  charPerMinField.textContent = (numbersTyped / timerSeconds).toFixed(2);
+>>>>>>> 6ece206bd8f725c702d883f184fb4c640ea48ead
 };
 
 const myInterval = setInterval(updateTimer, MILLISECONDS_PER_SECOND);
