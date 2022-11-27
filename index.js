@@ -34,11 +34,16 @@ const validUntilNow = (randomNumbersString, actuallyTypedNumbers) => {
   return valid;
 };
 
+const calculateAccuratelyTypedNumbers = () => {
+  return numbersTyped - missedNumbers;
+};
+
 const updateAccuracyFields = () => {
   numbersTypedEl.innerText = numbersTyped;
   missedNumbersEl.innerText = missedNumbers;
   accuracyFieldEl.innerText =
-    (((numbersTyped - missedNumbers) / numbersTyped) * 100).toFixed(2) + " %";
+    ((calculateAccuratelyTypedNumbers() / numbersTyped) * 100).toFixed(2) +
+    " %";
 };
 
 inputEl.addEventListener("keyup", (e) => {
@@ -83,7 +88,10 @@ const updateTimer = () => {
     (minutes.toString().length > 1 ? minutes : "0" + minutes) +
     " : " +
     (seconds.toString().length > 1 ? seconds : "0" + seconds);
-  charPerMinField.textContent = (numbersTyped / timerSeconds).toFixed(2);
+  charPerMinField.textContent = (
+    calculateAccuratelyTypedNumbers() /
+    (timerSeconds / 60)
+  ).toFixed(2);
 };
 
 const myInterval = setInterval(updateTimer, MILLISECONDS_PER_SECOND);
